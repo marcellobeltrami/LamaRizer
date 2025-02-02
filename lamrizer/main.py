@@ -6,8 +6,8 @@ def main():
     
     # CLI args.
     parser = argparse.ArgumentParser(description="LamRizer CLI")
-    parser.add_argument("-m", "--model", type=str, help="Specify the model to use", default="mistral")
-    
+    parser.add_argument("-lm", "--list_models", action='store_true', help="Lists models installed on system. Run ollama pull <model_name to install>")
+
     subparsers = parser.add_subparsers(dest="command")
 
     # Search command
@@ -15,11 +15,14 @@ def main():
     search.add_argument("-c", "--chatrequest", type=str, help="Directly use chatbot")
     search.add_argument("-w", "--websearch", type=str, help="Search the web and summarize the results")
     search.add_argument("-n", "--newsearch", type=str, help="Search for news specifically and summarize the results")
+    search.add_argument("-m", "--model", type=str, help="Specify the model to use", default="mistral")
 
     # Docsearch command
     docsearch = subparsers.add_parser("docsearch", help="Document search and summarize")
     docsearch.add_argument("-t", "--textsummary", type=str, help="Summarize a text file")
     docsearch.add_argument("-p", "--pdfsummary", type=str, help="Summarize a PDF file")
+    docsearch.add_argument("-m", "--model", type=str, help="Specify the model to use", default="mistral")
+
     args = parser.parse_args()
 
 ### SEARCH QUERY ###
@@ -54,9 +57,9 @@ def main():
             print(txt_text)
 
 
-        # List all models installed
-        if args.list_models:
-            Main.list_models()
+    # List all models installed
+    if args.list_models == True:
+        Main.list_models()
 
 if __name__ == "__main__":
         main()

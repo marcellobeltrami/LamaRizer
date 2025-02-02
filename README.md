@@ -29,22 +29,33 @@ Inside the project directory run `poetry install` to install all the projects de
 
 #### CLI
 
-Command line arguments for this app. The output is alway printed to console and can be easily piped into text files using the `>` command.
+Command line arguments for this app. The output is always printed to console and can be easily piped into text files using the `>` command. The CLI is split into `search` and `docsearch`. See below for appropriate flags.
 
-- `-i`, `--chatrequest`: Send a chat request to the model directly.
-- `-w`, `--websearch`: Search the web and summarize the results using AI model.
-- `-n`, `--newsearch`: Search for news specifically and summarize the results using the AI model.
-- `-t`, `--textsummary`: Summarize a text file with AI.
-- `-p`, `--pdfsummary`: Summarize a PDF file with AI.
+- `-lm`, `--list_models`: Lists models installed on the system. Run `ollama pull <model_name>` to install.
+
+`search`
+- `-c`, `--chatrequest`: Directly use chatbot.
+- `-w`, `--websearch`: Search the web and summarize the results.
+- `-n`, `--newsearch`: Search for news specifically and summarize the results.
 - `-m`, `--model`: Specify the model to use (default is "mistral").
-- `-lm`, `--list-models`: List all models installed.
+
+`docsearch`
+- `-t`, `--textsummary`: Summarize a text file.
+- `-p`, `--pdfsummary`: Summarize a PDF file.
+- `-m`, `--model`: Specify the model to use (default is "mistral").
+
+
 
 ```bash
-python main.py -i "What is a Deep Learning model" > AI_model.md
+python lamrizer/main.py search -c "What is a Deep Learning model" > AI_model.md
 
-python main.py -n "Current news in AI" > AI_news.md
+python lamrizer/main.py search -n "Current news in AI" > AI_news.md
 
-``` 
+# To be tested.
+#python lamrizer/main.py docsearch -t "path/to/textfile.txt" > summary.txt
+
+#python lamrizer/main.py docsearch -p "path/to/pdffile.pdf" > summary.pdf
+```
 
 #### GUI
 
