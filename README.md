@@ -16,7 +16,7 @@ chmod +x ./setup.sh
 sudo ./setup.sh
 ```
 
-To use the app, ensure you have tmux open and are running `ollama serve` (the selfhosted ollama server) after installation. 
+⚠️To use the app, ensure you have tmux open and are running `ollama serve` (the selfhosted ollama server) after installation. 
 
 **Poetry and project setup**
 
