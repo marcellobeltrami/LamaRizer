@@ -34,7 +34,7 @@ Inside the project directory run `poetry install` to install all the projects de
 
 Command line arguments for this app. The output is always printed to console and can be easily piped into text files using the `>` command. The CLI is split into `search` and `docsearch`. See below for appropriate flags.
 
-- `-lm`, `--list_models`: Lists models installed on the system. Run `ollama pull <model_name>` to install more from https://ollama.com.
+- `-lm`, `--list_models`: Lists models installed on the system. Run `ollama pull <model_name>` to install more from [https://ollama.com](https://ollama.com/search).
 
 `search`
 - `-c`, `--chatrequest`: Directly use chatbot.
