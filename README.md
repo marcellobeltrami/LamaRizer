@@ -7,6 +7,7 @@ Integrates seamessly with ollama, allowing to run all models.
 ## Install 
 
 **Ollama setup**
+
 Installs ollama and mistral latest model (default model used in the app). Other models can be installed using `ollama pull <model_name>`
 
 ```bash
@@ -14,6 +15,8 @@ chmod +x ./setup.sh
 
 sudo ./setup.sh
 ```
+
+To use the app, ensure you have tmux open and are running `ollama serve` (the selfhosted ollama server) after installation. 
 
 **Poetry and project setup**
 
