@@ -52,7 +52,7 @@ poetry install
 
 #### CLI
 
-Command line arguments for this app. The output is always printed to console and can be easily piped into text files using the `>` command. The CLI is split into `search` and `docsearch`. See below for appropriate flags.
+Command line arguments for this app. The CLI is split into `search` and `docsearch`. See below for appropriate flags.
 
 - `-lm`, `--list_models`: Lists models installed on the system. Run `ollama pull <model_name>` to install more from [https://ollama.com](https://ollama.com/search).
 
@@ -61,23 +61,27 @@ Command line arguments for this app. The output is always printed to console and
 - `-w`, `--websearch`: Search the web and summarize the results.
 - `-n`, `--newsearch`: Search for news specifically and summarize the results.
 - `-m`, `--model`: Specify the model to use (default is "mistral").
+- `-o`, `--output`: Specify output file.
+
 
 `docsearch`
 - `-t`, `--textsummary`: Summarize a text file.
 - `-p`, `--pdfsummary`: Summarize a PDF file.
 - `-m`, `--model`: Specify the model to use (default is "mistral").
+- `-o`, `--output`: Specify output file.
 
 
 
 ```bash
-python lamrizer/main.py search -c "What is a Deep Learning model" > AI_model.md
+python lamrizer/main.py search -c "What is a Deep Learning model" -o AI_model.md
 
-python lamrizer/main.py search -n "Current news in AI" > AI_news.md
+python lamrizer/main.py search -n "Current news in AI" -o AI_news.md
 
 # To be tested.
-#python lamrizer/main.py docsearch -t "path/to/textfile.txt" > summary.txt
+#python lamrizer/main.py docsearch -t "path/to/textfile.txt" -o summary.txt
+#python lamrizer/main.py docsearch -t "path/to/textfile.txt" -o summary.txt
 
-#python lamrizer/main.py docsearch -p "path/to/pdffile.pdf" > summary.pdf
+#python lamrizer/main.py docsearch -p "path/to/pdffile.pdf" -o summary.pdf
 ```
 
 #### GUI

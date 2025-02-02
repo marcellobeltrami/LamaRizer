@@ -16,12 +16,15 @@ def main():
     search.add_argument("-w", "--websearch", type=str, help="Search the web and summarize the results")
     search.add_argument("-n", "--newsearch", type=str, help="Search for news specifically and summarize the results")
     search.add_argument("-m", "--model", type=str, help="Specify the model to use", default="mistral")
+    search.add_argument("-o", "--output", type=str, help="Specify output file", default=None)
 
     # Docsearch command
     docsearch = subparsers.add_parser("docsearch", help="Document search and summarize")
     docsearch.add_argument("-t", "--textsummary", type=str, help="Summarize a text file")
     docsearch.add_argument("-p", "--pdfsummary", type=str, help="Summarize a PDF file")
     docsearch.add_argument("-m", "--model", type=str, help="Specify the model to use", default="mistral")
+    docsearch.add_argument("-o", "--output", type=str, help="Specify output file", default=None)
+
 
     args = parser.parse_args()
 
@@ -30,15 +33,22 @@ def main():
     if args.command == "search":
         if args.chatrequest:
             chat_output = Main.chatrequest(args.chatrequest, model=args.model, input_modifiers="")
-            print(chat_output)
+            Main.check_output(chat_output, args.output)
+
         if args.websearch:
             chat_output = Main.chatrequest(Main.web_search(args.websearch), model=args.model, input_modifiers="Extract detailed summary of this internet search without any unnecessary information.")
-            print(chat_output)
+            Main.check_output(chat_output, args.output)
     #Searches and summarizes news 
         if args.newsearch:
-            chat_output = Main.chatrequest(Main.newssearch(args.newsearch), model=args.model, 
+            newsearch_out = Main.newssearch(args.newsearch)
+            chat_output = Main.chatrequest(newsearch_out[1], model=args.model, 
                                         input_modifiers="Extract detailed summary of these news accurately.")
-            print(chat_output)
+            Main.check_output(chat_output, args.output)
+            if  args.output != None: 
+                
+                with open(args.output, "a") as file:
+                    print(f"\n\n## REFERENCES\n", newsearch_out[0], file=file) 
+
 
 ### DOCUMENT SEARCH ###
     elif args.command == "docsearch":
@@ -47,14 +57,14 @@ def main():
             pdf_text = DocsImport.PdfToText(args.pdfsummary)
             summary_pdf = Main.chatrequest(pdf_text, model=args.model, 
                                         input_modifiers="Extract detailed summary of this text. Do not include any unnecessary information.")
-            print(summary_pdf)
+            Main.check_output(summary_pdf, args.output)
         
         # summarize a text file
         if args.docsearch.textsummary:
             txt_text = DocsImport.TxtToText(args.textsummary)
-            summary_pdf = Main.chatrequest(txt_text, model=args.model, 
+            summary_txt = Main.chatrequest(txt_text, model=args.model, 
                                         input_modifiers="Extract detailed summary of this text. Do not include any unnecessary information.")
-            print(txt_text)
+            Main.check_output(summary_txt, args.output)
 
 
     # List all models installed

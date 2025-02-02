@@ -17,8 +17,10 @@ def newssearch(query):
     results = DDGS().news(query,max_results=20)
     
     text =  "\\n".join([r["title"] + ": " + r["body"] for r in results])
+     
+    fmted_urls = "\n".join([str(num) + ")  " + result["url"] for num, result in zip(range(1, len(results) + 1), results)])
     print("Done")
-    return text
+    return (fmted_urls, text)
 
 # Gets a query list
 def chatrequest(usr_input, model, input_modifiers=""):
@@ -39,3 +41,10 @@ def list_models():
     else:
         for model in ollama_list['models']:
             print(model['model'])
+
+def check_output(text,output): 
+    if output != None: 
+        with open(output, "w") as file: 
+            print(text, file=file)
+    else:
+        print(text)
