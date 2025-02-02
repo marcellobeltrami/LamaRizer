@@ -16,14 +16,29 @@ chmod +x ./setup.sh
 sudo ./setup.sh
 ```
 
-⚠️To use the app, ensure you have tmux open and are running `ollama serve` (the selfhosted ollama server) after installation. 
+⚠️To use the app, ensure you have tmux open and are running `ollama serve` (the selfhosted ollama server) after installation. If this returns an error such as `tcp already in use` then you already have the server up and don't need to wrry about this. 
 
-**Poetry and project setup**
+**Poetry, mamba and project setup**
+
+Mamba setup to use correct python version.
+
+```bash
+curl -Ls https://micro.mamba.pm/install.sh | bash
+
+mamba create -n LamaRizer python=3.12
+
+mamba activate LamaRizer
+```
 
 Install all python dependencies using poetry.  To install poetry run the following command.
 
 ```bash
 curl -sSL https://install.python-poetry.org | python3 -
+
+cd ./path/to/LamaRizer
+
+poetry install
+
 ```
 Inside the project directory run `poetry install` to install all the projects dependencies.
 
