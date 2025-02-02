@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "lamrizer"
+version = "0.1.0"
+description = ""
+authors = ["marcellobeltrami <marcello.beltrami@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+ollama = "^0.4.7"
+duckduckgo-search = "^7.3.0"
+pyPDF2 = "^3.0.1"
+chromadb = "^0.6.3"
+
+[tool.poetry.group.dev.dependencies]
+setuptools = "^75.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
