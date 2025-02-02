@@ -1,4 +1,4 @@
-# LamRizer 🦙
+# LamaRizer 🦙
 
 A CLI application to run local AI ChatBots. 
 
