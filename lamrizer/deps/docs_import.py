@@ -1,4 +1,5 @@
 import PyPDF2
+import docx
 
 # PDF -> Text
 def PdfToText(pdf_path):
@@ -16,3 +17,14 @@ def TxtToText(txt_path):
     # Convert TXT to text
     with open(txt_path, 'r') as f:
         text = f.read()
+    
+    return text
+
+# DOCX -> Text
+def DocxToText(docx_path):
+    # Convert DOCX to text using python-docx
+    doc = docx.Document(docx_path)
+    text = ''
+    for paragraph in doc.paragraphs:
+        text += paragraph.text + '\n'
+    return text

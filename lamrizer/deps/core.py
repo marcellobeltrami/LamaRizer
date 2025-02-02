@@ -4,16 +4,16 @@ import ollama
 
 # Gets carrys general search on the web
 def general_search(query):
-    print("Searching the web...")
+    print("Searching the web...", end="")
     results = DDGS().text(query, max_results=20)
     
     text =  "\\n".join([r["title"] + ": " + r["body"] for r in results])
     print("Done")
     return text
 
-# Carrys out news search on the web
+# Carrys out news search on the web Return links from DDGS search
 def newssearch(query):
-    print("Searching the web for news...")
+    print("Searching the web for news...", end="")
     results = DDGS().news(query,max_results=20)
     
     text =  "\\n".join([r["title"] + ": " + r["body"] for r in results])

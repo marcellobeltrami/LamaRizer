@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "lamrizer"
 version = "0.1.0"
-description = ""
+description = "Locally run CLI app to search web and documents with locally hosted ollama models."
 authors = ["marcellobeltrami <marcello.beltrami@gmail.com>"]
 readme = "README.md"
 
@@ -11,6 +11,8 @@ ollama = "^0.4.7"
 duckduckgo-search = "^7.3.0"
 pyPDF2 = "^3.0.1"
 chromadb = "^0.6.3"
+python-docx = "^1.1.2"
+
 
 [tool.poetry.group.dev.dependencies]
 setuptools = "^75.8.0"
