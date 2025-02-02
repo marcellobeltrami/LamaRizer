@@ -23,24 +23,29 @@ sudo ./setup.sh
 Mamba setup to use correct python version.
 
 ```bash
-curl -Ls https://micro.mamba.pm/install.sh | bash
+curl -Ls https://micro.mamba.pm/install.sh | bash 
 
-mamba create -n LamaRizer python=3.12
+mamba create -n LamaRizer python=3.12 
 
 mamba activate LamaRizer
 ```
 
 Install all python dependencies using poetry.  To install poetry run the following command.
 
+```bash 
+curl -sSL https://install.python-poetry.org | python3 - # poetry installation
+
+```
+Inside the project directory run `poetry install` to install all the projects dependencies.
+
+
 ```bash
-curl -sSL https://install.python-poetry.org | python3 -
 
 cd ./path/to/LamaRizer
 
 poetry install
 
 ```
-Inside the project directory run `poetry install` to install all the projects dependencies.
 
 
 ## Quick Use
