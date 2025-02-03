@@ -18,9 +18,9 @@ sudo ./setup.sh
 
 ⚠️To use the app, ensure you have tmux open and are running `ollama serve` (the selfhosted ollama server) after installation. If this returns an error such as `tcp already in use` then you already have the server up and don't need to wrry about this. 
 
-**Poetry, mamba and project setup**
+**Poetry, micromamba and project setup**
 
-Mamba setup to use correct python version.
+Micromamba setup to use correct python version.
 
 ```bash
 curl -Ls https://micro.mamba.pm/install.sh | bash 
