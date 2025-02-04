@@ -20,8 +20,9 @@ def main():
 
     # Docsearch command
     docsearch = subparsers.add_parser("docsearch", help="Document search and summarize")
-    docsearch.add_argument("-t", "--textsummary", type=str, help="Summarize a text file")
-    docsearch.add_argument("-p", "--pdfsummary", type=str, help="Summarize a PDF file")
+    docsearch.add_argument("-t", "--textsummary", type=str, help="Path to a text file to summarize")
+    docsearch.add_argument("-p", "--pdfsummary", type=str, help="Path to a PDF file to summarize")
+    docsearch.add_argument("-d", "--docx", type=str, help="Path to a docx to summarize")
     docsearch.add_argument("-m", "--model", type=str, help="Specify the model to use", default="mistral")
     docsearch.add_argument("-o", "--output", type=str, help="Specify output file", default=None)
 
@@ -53,16 +54,23 @@ def main():
 ### DOCUMENT SEARCH ###
     elif args.command == "docsearch":
     # summarize a pdf file
-        if args.docsearch.pdfsummary:
+        if args.pdfsummary:
             pdf_text = DocsImport.PdfToText(args.pdfsummary)
             summary_pdf = Main.chatrequest(pdf_text, model=args.model, 
                                         input_modifiers="Extract detailed summary of this text. Do not include any unnecessary information.")
             Main.check_output(summary_pdf, args.output)
         
         # summarize a text file
-        if args.docsearch.textsummary:
+        if args.textsummary:
             txt_text = DocsImport.TxtToText(args.textsummary)
             summary_txt = Main.chatrequest(txt_text, model=args.model, 
+                                        input_modifiers="Extract detailed summary of this text. Do not include any unnecessary information.")
+            Main.check_output(summary_txt, args.output)
+
+        # summarize a docx file
+        if args.textsummary:
+            docx_text = DocsImport.DocxToText(args.textsummary)
+            summary_txt = Main.chatrequest(docx_text, model=args.model, 
                                         input_modifiers="Extract detailed summary of this text. Do not include any unnecessary information.")
             Main.check_output(summary_txt, args.output)
 

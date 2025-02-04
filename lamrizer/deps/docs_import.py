@@ -6,9 +6,9 @@ def PdfToText(pdf_path):
     # Convert PDF to text
     text = ''
     with open(pdf_path, 'rb') as f:
-        pdf = PyPDF2.PdfFileReader(f)
-        for page_num in range(pdf.getNumPages()):
-            page = pdf.getPage(page_num)
+        pdf = PyPDF2.PdfReader(f)
+        for page_num in range(len(pdf.pages)):
+            page = pdf.pages[page_num]
             text += page.extract_text()
     return text
 
